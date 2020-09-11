@@ -72,7 +72,15 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var count = 0
+    var num = n
+    do {
+        count++
+        num /= 10
+    } while (num > 0)
+    return count
+}
 
 /**
  * Простая (2 балла)
@@ -80,21 +88,49 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var res1 = 1
+    var res2 = 1
+    var res = 1
+    return if (n > 2) {
+        for (i in 3..n) {
+            res = res1 + res2
+            res1 = res2
+            res2 = res
+        }; res
+    } else res
+}
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    var divisor = n
+    for (m in 2..n / 2) {
+        if (n % m == 0) {
+            divisor = m
+            if (divisor > 1) break
+        }
+    }
+    return divisor
+}
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int {
+    var divisor = 1
+    for (m in 2..n / 2) {
+        if ((n % m == 0) && (m > divisor)) {
+            divisor = m
+        }
+    }
+    return divisor
+}
 
 /**
  * Простая (2 балла)
@@ -112,7 +148,19 @@ fun maxDivisor(n: Int): Int = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var count = 0
+    var i = x
+    while (i > 1) {
+        count++
+        if (i % 2 == 0) {
+            i /= 2
+        } else {
+            i = i * 3 + 1
+        }
+    }
+    return count
+}
 
 /**
  * Средняя (3 балла)
