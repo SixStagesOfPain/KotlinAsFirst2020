@@ -3,6 +3,7 @@
 package lesson3.task1
 
 import kotlin.math.sqrt
+import kotlin.math.*
 
 // Урок 3: циклы
 // Максимальное количество баллов = 9
@@ -168,7 +169,15 @@ fun collatzSteps(x: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int {
+    var i = 0
+    while (i < m * n) {
+        if ((i % m == 0) && (i % n == 0) && (i != 0)) break
+        else i++
+
+    }
+    return i
+}
 
 /**
  * Средняя (3 балла)
@@ -177,7 +186,21 @@ fun lcm(m: Int, n: Int): Int = TODO()
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean {
+    for (i in 2..m) {
+        if (m % i == 0) {
+            for (a in 2..n) {
+                if (n % a == 0) {
+                    if (i == a) return false
+                }
+            }
+
+        }
+    }
+    return true
+}
+
+// A little later I'll try to do. This code is too long(
 
 /**
  * Средняя (3 балла)
