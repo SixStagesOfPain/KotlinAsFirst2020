@@ -245,7 +245,25 @@ fun isPalindrome(n: Int): Boolean = revert(n) == n
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean {
+    val ex = n % 10
+    var m = n
+    do {
+        if (m % 10 == ex) m /= 10
+    } while (m > 0)
+    return m != 0
+}
+
+/*{
+    var m = n
+    var count = 0
+    while (n > 0) {
+        m %= 10
+        count++
+    }
+    count /= 2
+    return (m / 10.0.pow(count / 2 - 1) == m % 10.0.pow(count / 2 + 1))
+}*/
 
 /**
  * Средняя (4 балла)
