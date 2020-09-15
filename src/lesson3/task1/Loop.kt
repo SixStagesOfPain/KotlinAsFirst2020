@@ -236,7 +236,14 @@ fun revert(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean {
+    var count = 0
+    var k = 0
+    while (n > 0) count++
+    val num = count / 2
+    for (i in 0 until num) if (n / 10.0.pow(count - i) == n % 10.0.pow(i + 1)) k++
+    return k == num - 1
+}
 
 /**
  * Средняя (3 балла)
