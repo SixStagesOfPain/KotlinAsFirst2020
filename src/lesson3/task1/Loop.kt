@@ -226,7 +226,6 @@ fun revert(n: Int): Int {
     return res
 }
 
-//Просто взять последнюю. Далее умножить на 10 + эта цифра
 /**
  * Средняя (3 балла)
  *
@@ -236,14 +235,7 @@ fun revert(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean {
-    var count = 0
-    var k = 0
-    while (n > 0) count++
-    val num = count / 2
-    for (i in 0 until num) if (n / 10.0.pow(count - i) == n % 10.0.pow(i + 1)) k++
-    return k == num - 1
-}
+fun isPalindrome(n: Int): Boolean = revert(n) == n
 
 /**
  * Средняя (3 балла)
