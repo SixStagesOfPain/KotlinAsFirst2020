@@ -251,21 +251,10 @@ fun hasDifferentDigits(n: Int): Boolean {
     var count = 0
     do {
         if (m % 10 != ex) count++
-            m /= 10
+        m /= 10
     } while (m > 0)
     return count > 0
 }
-
-/*{
-    var m = n
-    var count = 0
-    while (n > 0) {
-        m %= 10
-        count++
-    }
-    count /= 2
-    return (m / 10.0.pow(count / 2 - 1) == m % 10.0.pow(count / 2 + 1))
-}*/
 
 /**
  * Средняя (4 балла)
@@ -278,30 +267,16 @@ fun hasDifferentDigits(n: Int): Boolean {
  */
 fun sin(x: Double, eps: Double): Double {
     var sin = 0.0
-    var znak = -1
-    var change = x
+    val angle = x % (2 * PI)
+    var change = angle
     var n = 1
-    while (change > eps) {
+    while (abs(change) >= eps) {
+        sin += change
+        change = change * -1 * angle.pow(2) / ((n + 1) * (n + 2))
         n += 2
-        znak *= -1
-        sin += znak * change
-        change = x.pow(n) / factorial(n)
     }
     return sin
 }
-/*{
-    var sin = 0.0
-    var n = 1
-    while (x.pow(n) / factorial(n) >= eps) {
-        n += 2
-    }
-    if (n % 2 == 0) n++
-    for (i in 1..n step 2) {
-        if ((i - 1) % 4 == 0) sin += x.pow(n) / factorial(n)
-        else sin -= x.pow(n) / factorial(n)
-    }
-    return sin
-}*/
 
 /**
  * Средняя (4 балла)
