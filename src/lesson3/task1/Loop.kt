@@ -281,8 +281,8 @@ fun sin(x: Double, eps: Double): Double {
     while (change > eps) {
         n += 2
         if ((n + 1) % 4 == 0)
-            sin -= x.pow(n) / factorial(n)
-        else sin += x.pow(n) / factorial(n)
+            sin -= change
+        else sin += change
         change = x.pow(n) / factorial(n)
     }
     return sin
