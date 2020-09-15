@@ -248,10 +248,12 @@ fun isPalindrome(n: Int): Boolean = revert(n) == n
 fun hasDifferentDigits(n: Int): Boolean {
     val ex = n % 10
     var m = n
+    var count = 0
     do {
-        if (m % 10 == ex) m /= 10
+        if (m % 10 != ex) count++
+            m /= 10
     } while (m > 0)
-    return m != 0
+    return count > 0
 }
 
 /*{
@@ -276,13 +278,13 @@ fun hasDifferentDigits(n: Int): Boolean {
  */
 fun sin(x: Double, eps: Double): Double {
     var sin = 0.0
+    var znak = -1
     var change = x
     var n = 1
     while (change > eps) {
         n += 2
-        if ((n + 1) % 4 == 0)
-            sin -= change
-        else sin += change
+        znak *= -1
+        sin += znak * change
         change = x.pow(n) / factorial(n)
     }
     return sin
