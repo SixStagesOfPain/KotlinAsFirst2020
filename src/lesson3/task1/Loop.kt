@@ -171,11 +171,8 @@ fun collatzSteps(x: Int): Int {
  */
 fun lcm(m: Int, n: Int): Int {
     var i = 0
-    while (i < m * n) {
-        if ((i % m == 0) && (i % n == 0) && (i != 0)) break
-        else i++
-
-    }
+    while (i < m * n) if ((i % m == 0) && (i % n == 0) && (i != 0)) break
+    else i++
     return i
 }
 
@@ -187,20 +184,15 @@ fun lcm(m: Int, n: Int): Int {
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
 fun isCoPrime(m: Int, n: Int): Boolean {
-    for (i in 2..m) {
-        if (m % i == 0) {
-            for (a in 2..n) {
-                if (n % a == 0) {
-                    if (i == a) return false
-                }
-            }
-
-        }
-    }
-    return true
+    var res = true
+    var i = 2
+    while ((i <= max(m, n) / 2) && res)
+        if (m % i == 0 && n % i == 0) res = false
+        else i++
+    return res
 }
 
-// A little later I'll try to do. This code is too long(
+// Изначально код считал 6 минут, но я сократил.
 
 /**
  * Средняя (3 балла)
@@ -220,6 +212,7 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  */
 fun revert(n: Int): Int = TODO()
 
+//Просто взять последнюю. Далее умножить на 10 + эта цифра
 /**
  * Средняя (3 балла)
  *
