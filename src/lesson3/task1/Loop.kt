@@ -216,7 +216,15 @@ fun squareBetweenExists(m: Int, n: Int): Boolean =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var res = 0
+    var m = n
+    while (m > 0) {
+        res = res * 10 + m % 10
+        m /= 10
+    }
+    return res
+}
 
 //Просто взять последнюю. Далее умножить на 10 + эта цифра
 /**
