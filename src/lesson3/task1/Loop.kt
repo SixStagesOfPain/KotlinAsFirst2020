@@ -109,10 +109,10 @@ fun fib(n: Int): Int {
  */
 fun minDivisor(n: Int): Int {
     var divisor = n
-    for (m in 2..n / 2) {
+    for (m in 2..sqrt(n.toDouble()).toInt()) {
         if (n % m == 0) {
             divisor = m
-            if (divisor > 1) break
+            break
         }
     }
     return divisor
@@ -124,13 +124,12 @@ fun minDivisor(n: Int): Int {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    var divisor = 1
-    for (m in 2..n / 2) {
-        if ((n % m == 0) && (m > divisor)) {
-            divisor = m
+    for (m in n / 2 downTo 2) {
+        if (n % m == 0) {
+            return m
         }
     }
-    return divisor
+    return 1
 }
 
 /**
