@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
 import kotlin.math.sqrt
 import kotlin.math.*
 
@@ -311,7 +312,19 @@ fun cos(x: Double, eps: Double): Double {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var number = 1
+    var length = 1
+    var count = 0
+    val inter: Int
+    while (count < n) {
+        count += length
+        number++
+        length = digitNumber(sqr(number))
+    }
+    inter = count - n
+    return sqr(number - 1) / 10.0.pow(inter).toInt() % 10
+}
 
 /**
  * Сложная (5 баллов)
