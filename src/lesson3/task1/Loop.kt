@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
 import kotlin.math.sqrt
 import kotlin.math.*
 
@@ -79,7 +80,7 @@ fun digitNumber(n: Int): Int {
     do {
         count++
         num /= 10
-    } while (num > 0)
+    } while (abs(num) > 0)
     return count
 }
 
@@ -309,7 +310,14 @@ fun cos(x: Double, eps: Double): Double {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var res: Int
+    var k = 1
+    while (k < n) {
+        k++
+
+    }
+}
 
 /**
  * Сложная (5 баллов)
