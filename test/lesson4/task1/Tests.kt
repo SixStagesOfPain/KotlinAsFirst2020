@@ -160,6 +160,13 @@ class Tests {
     }
 
     @Test
+    fun minPrimeDivisor() {
+        assertEquals(3, minPrimeDivisor(75))
+        assertEquals(2, minPrimeDivisor(18))
+        assertEquals(17, minPrimeDivisor(7429))
+    }
+
+    @Test
     @Tag("3")
     fun factorize() {
         assertEquals(listOf(2), factorize(2))
