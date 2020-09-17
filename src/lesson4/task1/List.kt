@@ -1,6 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER", "ConvertCallChainIntoSequence")
 
 package lesson4.task1
+
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
 import lesson3.task1.isPrime
@@ -256,7 +257,29 @@ fun factorizeToString(n: Int): String {
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-fun convert(n: Int, base: Int): List<Int> = TODO()
+fun revertList(res: MutableList<Int>): MutableList<Int> {
+    val list = res
+    for (i in list.indices) {
+        list.add(list[list.size - 1 - i])
+        list.removeAt(list.size - 2 - i)
+    }
+    return list
+}
+
+
+fun convert(n: Int, base: Int): List<Int> {
+    val list = mutableListOf<Int>()
+    var m = n
+    var remain: Int
+    if (m < base) return listOf(m)
+    while (m >= base) {
+        remain = m % base
+        list.add(remain)
+        m /= base
+    }
+    if (m != 0) list.add(m)
+    return revertList(list)
+}
 
 /**
  * Сложная (4 балла)
