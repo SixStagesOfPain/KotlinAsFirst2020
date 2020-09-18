@@ -109,14 +109,12 @@ fun fib(n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var divisor = n
     for (m in 2..sqrt(n.toDouble()).toInt()) {
         if (n % m == 0) {
-            divisor = m
-            break
+            return m
         }
     }
-    return divisor
+    return n
 }
 
 /**
