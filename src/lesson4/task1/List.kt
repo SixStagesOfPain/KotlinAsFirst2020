@@ -436,28 +436,37 @@ fun ruslang(n: Int): String {
         100 -> "сто"; 200 -> "двести"; 300 -> "триста"; 400 -> "четыреста"
         500 -> "пятьсот"; 600 -> "шестьсот"; 700 -> "семьсот"; 800 -> "восемьсот"
         900 -> "девятьсот"; 1000 -> "одна тысяча"; 2000 -> "две тысячи"
-        3000, 4000 -> ruslang(n / 1000) + "тысячи"; in 5000..9000 step 1000 -> ruslang(n / 1000) + "тысяч"
-        in 11000..19000 -> ruslang(n / 1000) + "тысяч"
+        3000, 4000 -> ruslang(n / 1000) + " тысячи"; in 5000..9000 step 1000 -> ruslang(n / 1000) + " тысяч"
+        in 11000..19000 -> ruslang(n / 1000) + " тысяч"
         else -> ""
     }
 }
 
 fun russian(n: Int): String {
+    var res = listOf<Int>().joinToString()
     var str1 = listOf<Int>().joinToString()
     var str2 = listOf<Int>().joinToString()
     var str3 = listOf<Int>().joinToString()
     var str4 = listOf<Int>().joinToString()
     val thous = n / 1000
     val num = n % 1000
-    str1 += ruslang(thous - thous % 100)
-    str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) ruslang(thous % 100) + " " + "тысяч"
-    else ruslang(thous % 100 - thous % 10) + " " + ruslang(thous % 10 * 1000)
+    if (thous > 0) {
+        if (thous % 100 == 0) str1 += ruslang(thous) + " тысяч"
+        else {
+            if (thous % 10 == 0) str1 += ruslang(thous % 100) + " тысяч"
+            else {
+                str1 += ruslang(thous - thous % 100)
+                str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) ruslang(thous % 100) + " тысяч"
+                else ruslang(thous % 100 - thous % 10) + " " + ruslang(thous % 10 * 1000)
+            }
+        }
+    }
     str3 += ruslang(num - num % 100)
     str4 += if ((num % 100 >= 0) && (num % 100 < 20)) ruslang(num % 100)
     else ruslang(num % 100 - num % 10) + " " + ruslang(num % 10)
-    str1.trim().trim()
-    str2.trim().trim()
-    str3.trim().trim()
-    str4.trim().trim()
-    return "$str1 $str2 $str3 $str4".trim().trim()
+    if (str1.isNotEmpty()) res += str1.trim() + " "
+    if (str2.isNotEmpty()) res += str2.trim() + " "
+    if (str3.isNotEmpty()) res += str3.trim() + " "
+    if (str4.isNotEmpty()) res += str4.trim()
+    return res.trim()
 }

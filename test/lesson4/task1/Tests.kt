@@ -271,6 +271,18 @@ class Tests {
         assertEquals("две тысячи три", russian(2003))
         assertEquals("двести тысяч два", russian(200002))
         assertEquals("девятьсот тысяч", russian(900000))
+        assertEquals("один", russian(1))
+        assertEquals("одна тысяча", russian(1000))
+        assertEquals("девятьсот девяносто девять тысяч девятьсот девяносто девять", russian(999999))
+        assertEquals("триста тысяч один", russian(300001))
+        assertEquals("десять", russian(10))
+        assertEquals("двадцать тысяч пять", russian(20005))
+        assertEquals("двенадцать тысяч", russian(12000))
+        assertEquals("сто тысяч", russian(100000))
+        assertEquals("двенадцать", russian(12))
+        assertEquals("двенадцать", russian(12))
+        assertEquals("двенадцать", russian(12))
+        assertEquals("двенадцать", russian(12))
         assertEquals("двенадцать", russian(12))
     }
 }
