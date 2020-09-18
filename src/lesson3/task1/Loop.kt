@@ -3,6 +3,7 @@
 package lesson3.task1
 
 import lesson1.task1.sqr
+import lesson4.task1.factorize
 import kotlin.math.sqrt
 import kotlin.math.*
 
@@ -122,16 +123,7 @@ fun minDivisor(n: Int): Int {
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int {
-    if (n == 2) return 2
-    if (n % 2 == 0) return n / 2
-    for (m in n / 3 downTo 1) {
-        if (n % m == 0) {
-            return m
-        }
-    }
-    return 1
-}
+fun maxDivisor(n: Int): Int = n / factorize(n).first()
 
 /**
  * Простая (2 балла)
