@@ -246,6 +246,13 @@ class Tests {
     }
 
     @Test
+    fun baseroman() {
+        assertEquals("I", baseroman(1))
+        assertEquals("L", baseroman(50))
+        assertEquals("M", baseroman(1000))
+    }
+
+    @Test
     @Tag("5")
     fun roman() {
         assertEquals("I", roman(1))

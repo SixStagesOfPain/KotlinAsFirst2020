@@ -290,7 +290,7 @@ fun convert(n: Int, base: Int): List<Int> {
  * (например, n.toString(base) и подобные), запрещается.
  */
 fun base(s: Int): String {
-    val d: String = when (s) {
+    return when (s) {
         10 -> "a"; 11 -> "b"; 12 -> "c"; 13 -> "d"
         14 -> "e"; 15 -> "f"; 16 -> "g"; 17 -> "h"
         18 -> "i"; 19 -> "j"; 20 -> "k"; 21 -> "l"
@@ -300,7 +300,6 @@ fun base(s: Int): String {
         34 -> "y"; 35 -> "z"
         else -> "$s"
     }
-    return d
 }
 
 
@@ -377,7 +376,45 @@ fun decimalFromString(str: String, base: Int): Int {
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
+fun baseroman(n: Int): String {
+    return when (n) {
+        1 -> "I"; 4 -> "IV"; 5 -> "V"; 9 -> "IX"; 10 -> "X"
+        40 -> "XL"; 50 -> "L"; 90 -> "XC"; 100 -> "C"; 400 -> "CD"; 500 -> "D"
+        900 -> "CM"; 1000 -> "M"
+        else -> "I"
+    }
+}
+
+fun roman(n: Int): String {
+    var res = listOf<Int>().joinToString()
+    var m = n
+    var k = n
+    var i = 3
+    while (k > 0) {
+        i--
+        k /= 10
+    }
+    while (m > 0) {
+        while (m >= 10.0.pow(3 - i)) {
+            res += baseroman((m - m % 10.0.pow(3 - i)).toInt() / (m / (10.0.pow(3 - i)).toInt()))
+            m -= 10.0.pow(3 - i).toInt()
+        }
+        if (m >= 9 * 10.0.pow(2 - i)) {
+            res += baseroman(9 * 10.0.pow(2 - i).toInt())
+            m -= 9 * 10.0.pow(2 - i).toInt()
+        }
+        while (m >= 5 * 10.0.pow(2 - i)) {
+            res += baseroman((m - m % (5 * 10.0.pow(2 - i))).toInt() / (m / (5 * 10.0.pow(2 - i)).toInt()))
+            m -= 5 * 10.0.pow(2 - i).toInt()
+        }
+        if (m >= 4 * 10.0.pow(2 - i)) {
+            res += baseroman(4 * 10.0.pow(2 - i).toInt())
+            m -= 4 * 10.0.pow(2 - i).toInt()
+        }
+        i++
+    }
+    return res
+}
 
 /**
  * Очень сложная (7 баллов)
