@@ -270,11 +270,11 @@ fun convert(n: Int, base: Int): List<Int> {
     val list = mutableListOf<Int>()
     var m = n
     var remain: Int
-    while (m > 0) {
+    do {
         remain = m % base
         list.add(remain)
         m /= base
-    }
+    } while (m > 0)
     return revertList(list)
 }
 
