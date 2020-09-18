@@ -309,12 +309,12 @@ fun convertToString(n: Int, base: Int): String {
     var name: String
     var string: String = listOf<Int>().joinToString()
     var remain: Int
-    while (m > 0) {
+    do {
         remain = m % base
         name = base(remain)
         string += name
         m /= base
-    }
+    } while (m > 0)
     for (i in string.indices)
         result += string[string.length - 1 - i]
     return result
