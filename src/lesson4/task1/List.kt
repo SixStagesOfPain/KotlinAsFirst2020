@@ -289,7 +289,37 @@ fun convert(n: Int, base: Int): List<Int> {
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, n.toString(base) и подобные), запрещается.
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+fun base(s: Int): String {
+    val d: String = when (s) {
+        10 -> "a"; 11 -> "b"; 12 -> "c"; 13 -> "d"
+        14 -> "e"; 15 -> "f"; 16 -> "g"; 17 -> "h"
+        18 -> "i"; 19 -> "j"; 20 -> "k"; 21 -> "l"
+        22 -> "m"; 23 -> "n"; 24 -> "o"; 25 -> "p"
+        26 -> "q"; 27 -> "r"; 28 -> "s"; 29 -> "t"
+        30 -> "u"; 31 -> "v"; 32 -> "w"; 33 -> "x"
+        34 -> "y"; 35 -> "z"
+        else -> "$s"
+    }
+    return d
+}
+
+
+fun convertToString(n: Int, base: Int): String {
+    var m = n
+    var result = listOf<Int>().joinToString()
+    var name: String
+    var string: String = listOf<Int>().joinToString()
+    var remain: Int
+    while (m > 0) {
+        remain = m % base
+        name = base(remain)
+        string += name
+        m /= base
+    }
+    for (i in string.indices)
+        result += string[string.length - 1 - i]
+    return result
+}
 
 /**
  * Средняя (3 балла)

@@ -201,6 +201,13 @@ class Tests {
     }
 
     @Test
+    fun base() {
+        assertEquals("1", base(1))
+        assertEquals("9", base(9))
+        assertEquals("f", base(15))
+    }
+
+    @Test
     @Tag("4")
     fun convertToString() {
         assertEquals("1", convertToString(1, 2))
