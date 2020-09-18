@@ -423,4 +423,41 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+fun ruslang(n: Int): String {
+    return when (n) {
+        1 -> "один"; 2 -> "два"; 3 -> "три"; 4 -> "четыре"; 5 -> "пять"; 0 -> ""
+        6 -> "шесть"; 7 -> "семь"; 8 -> "восемь"; 9 -> "девять"; 10 -> "десять"
+        11 -> "одиннадцать"; 12 -> "двенадцать"; 13 -> "тринадцать"; 14 -> "четырнадцать"
+        15 -> "пятнадцать"; 16 -> "шестнадцать"; 17 -> "семнадцать"
+        18 -> "восемнадцать"; 19 -> "девятнадцать"
+        20 -> "двадцать"; 30 -> "тридцать"; 40 -> "сорок"; 50 -> "пятьдесят"; 60 -> "шестьдесят"
+        70 -> "семьдесят"; 80 -> "восемьдесят"; 90 -> "девяносто"
+        in 20..99 -> ruslang(n / 10) + ruslang(n % 10)
+        100 -> "сто"; 200 -> "двести"; 300 -> "триста"; 400 -> "четыреста"
+        500 -> "пятьсот"; 600 -> "шестьсот"; 700 -> "семьсот"; 800 -> "восемьсот"
+        900 -> "девятьсот"; 1000 -> "одна тысяча"; 2000 -> "две тысячи"
+        3000, 4000 -> ruslang(n / 1000) + "тысячи"; in 5000..9000 step 1000 -> ruslang(n / 1000) + "тысяч"
+        in 11000..19000 -> ruslang(n / 1000) + "тысяч"
+        else -> ""
+    }
+}
+
+fun russian(n: Int): String {
+    var str1 = listOf<Int>().joinToString()
+    var str2 = listOf<Int>().joinToString()
+    var str3 = listOf<Int>().joinToString()
+    var str4 = listOf<Int>().joinToString()
+    val thous = n / 1000
+    val num = n % 1000
+    str1 += ruslang(thous - thous % 100)
+    str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) ruslang(thous % 100) + " " + "тысяч"
+    else ruslang(thous % 100 - thous % 10) + " " + ruslang(thous % 10 * 1000)
+    str3 += ruslang(num - num % 100)
+    str4 += if ((num % 100 >= 0) && (num % 100 < 20)) ruslang(num % 100)
+    else ruslang(num % 100 - num % 10) + " " + ruslang(num % 10)
+    str1.trim().trim()
+    str2.trim().trim()
+    str3.trim().trim()
+    str4.trim().trim()
+    return "$str1 $str2 $str3 $str4".trim().trim()
+}
