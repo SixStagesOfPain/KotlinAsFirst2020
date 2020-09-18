@@ -453,7 +453,7 @@ fun russian(n: Int): String {
     if (thous > 0) {
         if (thous % 100 == 0) str1 += ruslang(thous) + " тысяч"
         else {
-            if (thous % 10 == 0) str1 += ruslang(thous % 100) + " тысяч"
+            if (thous % 10 == 0) str1 += ruslang(thous - thous % 100) + " " + ruslang(thous % 100) + " тысяч"
             else {
                 str1 += ruslang(thous - thous % 100)
                 str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) ruslang(thous % 100) + " тысяч"
