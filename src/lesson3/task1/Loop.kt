@@ -193,8 +193,6 @@ fun isCoPrime(m: Int, n: Int): Boolean {
     return res
 }
 
-// Изначально код считал 6 минут, но я сократил.
-
 /**
  * Средняя (3 балла)
  *
@@ -203,12 +201,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean =
-    sqrt(n.toDouble()).toInt() - sqrt(m.toDouble()) >= 0
-
-//var pre: Double =
-//if (sqrt(m.toDouble()) % 1 == 0.0) sqrt(m.toDouble()) else (sqrt(m.toDouble()).toInt() + 1).toDouble()
-//return sqrt(n.toDouble()).toInt() - pre >= 0
-//Изначально был такой вариант
+    floor(sqrt(n.toDouble())) - ceil(sqrt(m.toDouble())) >= 0
 
 /**
  * Средняя (3 балла)
