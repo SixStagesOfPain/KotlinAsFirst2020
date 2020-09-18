@@ -306,14 +306,12 @@ fun squareSequenceDigit(n: Int): Int {
     var number = 1
     var length = 1
     var count = 0
-    val inter: Int
     while (count < n) {
         count += length
         number++
         length = digitNumber(sqr(number))
     }
-    inter = count - n
-    return sqr(number - 1) / 10.0.pow(inter).toInt() % 10
+    return sqr(number - 1) / 10.0.pow(count - n).toInt() % 10
 }
 
 /**
@@ -329,12 +327,10 @@ fun fibSequenceDigit(n: Int): Int {
     var number = 1
     var length = 1
     var count = 0
-    val inter: Int
     while (count < n) {
         count += length
         number++
         length = digitNumber(fib(number))
     }
-    inter = count - n
-    return fib(number - 1) / 10.0.pow(inter).toInt() % 10
+    return fib(number - 1) / 10.0.pow(count - n).toInt() % 10
 }
