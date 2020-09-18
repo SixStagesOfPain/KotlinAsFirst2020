@@ -133,6 +133,12 @@ class Tests {
     }
 
     @Test
+    fun NOD() {
+        assertEquals(12, NOD(24, 12))
+        assertEquals(7, NOD(35, 63))
+    }
+
+    @Test
     @Tag("3")
     fun lcm() {
         assertEquals(13, lcm(13, 13))

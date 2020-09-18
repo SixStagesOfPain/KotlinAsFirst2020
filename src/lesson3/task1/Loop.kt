@@ -169,15 +169,15 @@ fun collatzSteps(x: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int {
-    for (i in 1..n) {
-        for (k in 1..m) {
-            if (m * i == n * k)
-                return m * i
-        }
-    }
-    return m * n
+fun NOD(n: Int, m: Int): Int {
+    var a = n
+    var b = m
+    while ((a > 0) && (b > 0))
+        if (a > b) a %= b else b %= a
+    return a + b
 }
+
+fun lcm(m: Int, n: Int): Int = m * n / NOD(n, m)
 
 /**
  * Средняя (3 балла)
@@ -186,14 +186,7 @@ fun lcm(m: Int, n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean {
-    var res = true
-    var i = 2
-    while ((i <= max(m, n) / 2) && res)
-        if (m % i == 0 && n % i == 0) res = false
-        else i++
-    return res
-}
+fun isCoPrime(m: Int, n: Int): Boolean = NOD(m, n) <= 1
 
 /**
  * Средняя (3 балла)
