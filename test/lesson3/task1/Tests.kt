@@ -133,9 +133,9 @@ class Tests {
     }
 
     @Test
-    fun NOD() {
-        assertEquals(12, NOD(24, 12))
-        assertEquals(7, NOD(35, 63))
+    fun nod() {
+        assertEquals(12, nod(24, 12))
+        assertEquals(7, nod(35, 63))
     }
 
     @Test
