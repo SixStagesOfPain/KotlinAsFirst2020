@@ -4,6 +4,7 @@ package lesson4.task1
 
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
+import lesson3.task1.digitNumber
 import lesson3.task1.isPrime
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -388,12 +389,8 @@ fun baseRoman(n: Int): String {
 fun roman(n: Int): String {
     var res = ""
     var m = n
-    var k = n
-    var i = 3
-    while (k > 0) {
-        i--
-        k /= 10
-    }
+    var i = 3 - digitNumber(n) //Пришлось немного доработать, так как в прошлая версия некорректно работала при n > 9999
+    if (i < 0) i = 0
     while (m > 0) {
         val power = 10.0.pow(3 - i).toInt()
         val powerlow = 10.0.pow(2 - i).toInt()
