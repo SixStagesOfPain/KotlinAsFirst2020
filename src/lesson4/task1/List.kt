@@ -398,7 +398,7 @@ fun roman(n: Int): String {
         val power = 10.0.pow(3 - i).toInt()
         val powerlow = 10.0.pow(2 - i).toInt()
         while (m >= power) {
-            res += baseRoman((m - m % power) / (m / power))
+            res += baseRoman(1 * power)
             m -= power
         }
         if (m >= 9 * powerlow) {
