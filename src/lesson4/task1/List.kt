@@ -306,9 +306,8 @@ fun base(s: Int): String {
 
 fun convertToString(n: Int, base: Int): String {
     var m = n
-    var result = listOf<Int>().joinToString()
     var name: String
-    var string: String = listOf<Int>().joinToString()
+    var string = ""
     var remain: Int
     do {
         remain = m % base
@@ -316,9 +315,7 @@ fun convertToString(n: Int, base: Int): String {
         string += name
         m /= base
     } while (m > 0)
-    for (i in string.indices)
-        result += string[string.length - 1 - i]
-    return result
+    return string.reversed()
 }
 
 /**
