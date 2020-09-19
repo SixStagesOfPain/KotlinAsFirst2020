@@ -395,21 +395,23 @@ fun roman(n: Int): String {
         k /= 10
     }
     while (m > 0) {
-        while (m >= 10.0.pow(3 - i)) {
-            res += baseRoman((m - m % 10.0.pow(3 - i)).toInt() / (m / (10.0.pow(3 - i)).toInt()))
-            m -= 10.0.pow(3 - i).toInt()
+        val power = 10.0.pow(3 - i).toInt()
+        val powerlow = 10.0.pow(2 - i).toInt()
+        while (m >= power) {
+            res += baseRoman((m - m % power) / (m / power))
+            m -= power
         }
-        if (m >= 9 * 10.0.pow(2 - i)) {
-            res += baseRoman(9 * 10.0.pow(2 - i).toInt())
-            m -= 9 * 10.0.pow(2 - i).toInt()
+        if (m >= 9 * powerlow) {
+            res += baseRoman(9 * powerlow)
+            m -= 9 * powerlow
         }
         while (m >= 5 * 10.0.pow(2 - i)) {
-            res += baseRoman((m - m % (5 * 10.0.pow(2 - i))).toInt() / (m / (5 * 10.0.pow(2 - i)).toInt()))
-            m -= 5 * 10.0.pow(2 - i).toInt()
+            res += baseRoman((m - m % (5 * powerlow)) / (m / (5 * powerlow)))
+            m -= 5 * powerlow
         }
         if (m >= 4 * 10.0.pow(2 - i)) {
-            res += baseRoman(4 * 10.0.pow(2 - i).toInt())
-            m -= 4 * 10.0.pow(2 - i).toInt()
+            res += baseRoman(4 * powerlow)
+            m -= 4 * powerlow
         }
         i++
     }
