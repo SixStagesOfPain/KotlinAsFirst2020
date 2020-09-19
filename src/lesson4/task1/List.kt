@@ -405,11 +405,11 @@ fun roman(n: Int): String {
             res += baseRoman(9 * powerlow)
             m -= 9 * powerlow
         }
-        while (m >= 5 * 10.0.pow(2 - i)) {
-            res += baseRoman((m - m % (5 * powerlow)) / (m / (5 * powerlow)))
+        if (m >= 5 * powerlow) {
+            res += baseRoman(5 * powerlow)
             m -= 5 * powerlow
         }
-        if (m >= 4 * 10.0.pow(2 - i)) {
+        if (m >= 4 * powerlow) {
             res += baseRoman(4 * powerlow)
             m -= 4 * powerlow
         }
