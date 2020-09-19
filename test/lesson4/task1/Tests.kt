@@ -248,10 +248,10 @@ class Tests {
     }
 
     @Test
-    fun baseroman() {
-        assertEquals("I", baseroman(1))
-        assertEquals("L", baseroman(50))
-        assertEquals("M", baseroman(1000))
+    fun baseRoman() {
+        assertEquals("I", baseRoman(1))
+        assertEquals("L", baseRoman(50))
+        assertEquals("M", baseRoman(1000))
     }
 
     @Test

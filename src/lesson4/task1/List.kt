@@ -376,7 +376,7 @@ fun decimalFromString(str: String, base: Int): Int {
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun baseroman(n: Int): String {
+fun baseRoman(n: Int): String {
     return when (n) {
         1 -> "I"; 4 -> "IV"; 5 -> "V"; 9 -> "IX"; 10 -> "X"
         40 -> "XL"; 50 -> "L"; 90 -> "XC"; 100 -> "C"; 400 -> "CD"; 500 -> "D"
@@ -396,19 +396,19 @@ fun roman(n: Int): String {
     }
     while (m > 0) {
         while (m >= 10.0.pow(3 - i)) {
-            res += baseroman((m - m % 10.0.pow(3 - i)).toInt() / (m / (10.0.pow(3 - i)).toInt()))
+            res += baseRoman((m - m % 10.0.pow(3 - i)).toInt() / (m / (10.0.pow(3 - i)).toInt()))
             m -= 10.0.pow(3 - i).toInt()
         }
         if (m >= 9 * 10.0.pow(2 - i)) {
-            res += baseroman(9 * 10.0.pow(2 - i).toInt())
+            res += baseRoman(9 * 10.0.pow(2 - i).toInt())
             m -= 9 * 10.0.pow(2 - i).toInt()
         }
         while (m >= 5 * 10.0.pow(2 - i)) {
-            res += baseroman((m - m % (5 * 10.0.pow(2 - i))).toInt() / (m / (5 * 10.0.pow(2 - i)).toInt()))
+            res += baseRoman((m - m % (5 * 10.0.pow(2 - i))).toInt() / (m / (5 * 10.0.pow(2 - i)).toInt()))
             m -= 5 * 10.0.pow(2 - i).toInt()
         }
         if (m >= 4 * 10.0.pow(2 - i)) {
-            res += baseroman(4 * 10.0.pow(2 - i).toInt())
+            res += baseRoman(4 * 10.0.pow(2 - i).toInt())
             m -= 4 * 10.0.pow(2 - i).toInt()
         }
         i++
