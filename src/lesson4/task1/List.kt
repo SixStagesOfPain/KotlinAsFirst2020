@@ -386,7 +386,7 @@ fun baseRoman(n: Int): String {
 }
 
 fun roman(n: Int): String {
-    var res = listOf<Int>().joinToString()
+    var res = ""
     var m = n
     var k = n
     var i = 3
