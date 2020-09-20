@@ -423,12 +423,14 @@ fun russian(n: Int): String {
     val thous = n / 1000
     val num = n % 1000
     if (thous > 0) {
-        if (thous % 100 == 0) str1 += ruslang(thous * 1000)
-        else if (thous % 10 == 0) str1 += ruslang(thous - thous % 100) + " " + ruslang(thous % 100 * 1000)
-        else {
-            str1 += ruslang(thous - thous % 100)
-            str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) ruslang(thous % 100 * 1000)
-            else ruslang(thous % 100 - thous % 10) + " " + ruslang(thous % 10 * 1000)
+        when {
+            thous % 100 == 0 -> str1 += ruslang(thous * 1000)
+            thous % 10 == 0 -> str1 += ruslang(thous - thous % 100) + " " + ruslang(thous % 100 * 1000)
+            else -> {
+                str1 += ruslang(thous - thous % 100)
+                str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) ruslang(thous % 100 * 1000)
+                else ruslang(thous % 100 - thous % 10) + " " + ruslang(thous % 10 * 1000)
+            }
         }
 
     }
