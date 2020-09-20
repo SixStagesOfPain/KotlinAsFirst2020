@@ -179,12 +179,6 @@ class Tests {
     }
 
     @Test
-    fun reverList() {
-        assertEquals(mutableListOf(5, 4, 3, 2, 1), revertList(mutableListOf(1, 2, 3, 4, 5)))
-        assertEquals(mutableListOf(15, 12, 6, 5, 4), revertList(mutableListOf(4, 5, 6, 12, 15)))
-    }
-
-    @Test
     @Tag("3")
     fun convert() {
         assertEquals(listOf(1), convert(1, 2))
