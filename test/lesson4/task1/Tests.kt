@@ -188,12 +188,6 @@ class Tests {
         assertEquals("0", convertToString(0, 2))
     }
 
-    @Test
-    fun base() {
-        assertEquals("1", base(1))
-        assertEquals("9", base(9))
-        assertEquals("f", base(15))
-    }
 
     @Test
     @Tag("4")
