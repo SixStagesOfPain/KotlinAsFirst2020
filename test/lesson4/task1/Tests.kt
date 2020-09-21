@@ -211,13 +211,6 @@ class Tests {
     }
 
     @Test
-    fun rebase() {
-        assertEquals(10, rebase('a'))
-        assertEquals(12, rebase('c'))
-        assertEquals(35, rebase('z'))
-    }
-
-    @Test
     @Tag("4")
     fun decimalFromString() {
         assertEquals(1, decimalFromString("1", 2))
