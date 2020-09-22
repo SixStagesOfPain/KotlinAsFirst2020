@@ -246,9 +246,8 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     val list = mutableListOf<Int>()
     var m = n
-    var remain: Int
     do {
-        remain = m % base
+        val remain = m % base
         list.add(remain)
         m /= base
     } while (m > 0)
@@ -269,17 +268,16 @@ fun convert(n: Int, base: Int): List<Int> {
 
 fun convertToString(n: Int, base: Int): String {
     var m = n
-    var string = ""
-    var remain: Int
+    var res = ""
     do {
-        remain = m % base
-        if (remain < 10) string += "$remain"
+        val remain = m % base
+        if (remain < 10) res += "$remain"
         else {
-            string += (remain + 87).toChar()
+            res += (remain + 87).toChar()
         }
         m /= base
     } while (m > 0)
-    return string.reversed()
+    return res.reversed()
 }
 
 /**
@@ -311,10 +309,10 @@ fun decimal(digits: List<Int>, base: Int): Int {
 
 fun decimalFromString(str: String, base: Int): Int {
     var res = 0
-    var num:Int
+    var num: Int
     for (i in str.indices) {
-        if (str[i].toInt() > 96) num = str[i].toInt() - 87
-        else num = str[i].toInt() - 48
+        num = if (str[i].toInt() > 96) str[i].toInt() - 87
+        else str[i].toInt() - 48
         res += num * base.toDouble().pow(str.length - i - 1).toInt()
     }
     return res
@@ -344,22 +342,22 @@ fun roman(n: Int): String {
     if (i < 0) i = 0
     while (m > 0) {
         val power = 10.0.pow(3 - i).toInt()
-        val powerlow = 10.0.pow(2 - i).toInt()
+        val powerLow = 10.0.pow(2 - i).toInt()
         while (m >= power) {
             res += baseRoman(1 * power)
             m -= power
         }
-        if (m >= 9 * powerlow) {
-            res += baseRoman(9 * powerlow)
-            m -= 9 * powerlow
+        if (m >= 9 * powerLow) {
+            res += baseRoman(9 * powerLow)
+            m -= 9 * powerLow
         }
-        if (m >= 5 * powerlow) {
-            res += baseRoman(5 * powerlow)
-            m -= 5 * powerlow
+        if (m >= 5 * powerLow) {
+            res += baseRoman(5 * powerLow)
+            m -= 5 * powerLow
         }
-        if (m >= 4 * powerlow) {
-            res += baseRoman(4 * powerlow)
-            m -= 4 * powerlow
+        if (m >= 4 * powerLow) {
+            res += baseRoman(4 * powerLow)
+            m -= 4 * powerLow
         }
         i++
     }
@@ -373,7 +371,7 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun ruslang(n: Int): String {
+fun rusLang(n: Int): String {
     return when (n) {
         1 -> "один"; 2 -> "два"; 3 -> "три"; 4 -> "четыре"; 5 -> "пять"; 0 -> ""
         6 -> "шесть"; 7 -> "семь"; 8 -> "восемь"; 9 -> "девять"; 10 -> "десять"
@@ -382,14 +380,14 @@ fun ruslang(n: Int): String {
         18 -> "восемнадцать"; 19 -> "девятнадцать"
         20 -> "двадцать"; 30 -> "тридцать"; 40 -> "сорок"; 50 -> "пятьдесят"; 60 -> "шестьдесят"
         70 -> "семьдесят"; 80 -> "восемьдесят"; 90 -> "девяносто"
-        in 20..99 -> ruslang(n / 10) + ruslang(n % 10)
+        in 20..99 -> rusLang(n / 10) + rusLang(n % 10)
         100 -> "сто"; 200 -> "двести"; 300 -> "триста"; 400 -> "четыреста"
         500 -> "пятьсот"; 600 -> "шестьсот"; 700 -> "семьсот"; 800 -> "восемьсот"
         900 -> "девятьсот"; 1000 -> "одна тысяча"; 2000 -> "две тысячи"
-        3000, 4000 -> ruslang(n / 1000) + " тысячи"; in 5000..9000 step 1000 -> ruslang(n / 1000) + " тысяч"
-        in 10000..19000 step 1000 -> ruslang(n / 1000) + " тысяч"
-        in 20000..90000 step 10000 -> ruslang(n / 1000) + " тысяч"
-        in 100000..900000 step 100000 -> ruslang(n / 1000) + " тысяч"
+        3000, 4000 -> rusLang(n / 1000) + " тысячи"; in 5000..9000 step 1000 -> rusLang(n / 1000) + " тысяч"
+        in 10000..19000 step 1000 -> rusLang(n / 1000) + " тысяч"
+        in 20000..90000 step 10000 -> rusLang(n / 1000) + " тысяч"
+        in 100000..900000 step 100000 -> rusLang(n / 1000) + " тысяч"
         else -> ""
     }
 }
@@ -402,19 +400,19 @@ fun russian(n: Int): String {
     val num = n % 1000
     if (thous > 0) {
         when {
-            thous % 100 == 0 -> str1 += ruslang(thous * 1000)
-            thous % 10 == 0 -> str1 += ruslang(thous - thous % 100) + " " + ruslang(thous % 100 * 1000)
+            thous % 100 == 0 -> str1 += rusLang(thous * 1000)
+            thous % 10 == 0 -> str1 += rusLang(thous - thous % 100) + " " + rusLang(thous % 100 * 1000)
             else -> {
-                str1 += ruslang(thous - thous % 100)
-                str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) ruslang(thous % 100 * 1000)
-                else ruslang(thous % 100 - thous % 10) + " " + ruslang(thous % 10 * 1000)
+                str1 += rusLang(thous - thous % 100)
+                str2 += if ((thous % 100 > 9) && (thous % 100 < 20)) rusLang(thous % 100 * 1000)
+                else rusLang(thous % 100 - thous % 10) + " " + rusLang(thous % 10 * 1000)
             }
         }
 
     }
-    val str3 = ruslang(num - num % 100)
-    val str4 = if ((num % 100 >= 0) && (num % 100 < 20)) ruslang(num % 100)
-    else ruslang(num % 100 - num % 10) + " " + ruslang(num % 10)
+    val str3 = rusLang(num - num % 100)
+    val str4 = if ((num % 100 >= 0) && (num % 100 < 20)) rusLang(num % 100)
+    else rusLang(num % 100 - num % 10) + " " + rusLang(num % 10)
     if (str1.isNotEmpty()) res += str1.trim() + " "
     if (str2.isNotEmpty()) res += str2.trim() + " "
     if (str3.isNotEmpty()) res += str3.trim() + " "
