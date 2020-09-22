@@ -143,10 +143,10 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
  *     -> a changes to mutableMapOf() aka becomes empty
  */
 fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>): MutableMap<String, String> {
-    for (i in a)
-        for (k in b)
-            if (i == k) {
-                a.remove(i.key)
+    for ((key, value) in a)
+        for ((key1, value1) in b)
+            if ((key == key1) && (value == value1)) {
+                a.remove(key, value)
             }
     return a
 }
@@ -158,7 +158,12 @@ fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>): MutableMa
  * В выходном списке не должно быть повторяюихся элементов,
  * т. е. whoAreInBoth(listOf("Марат", "Семён, "Марат"), listOf("Марат", "Марат")) == listOf("Марат")
  */
-fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
+fun whoAreInBoth(a: List<String>, b: List<String>): List<String> {
+    val list = mutableListOf<String>()
+    for (word in a)
+        if (word in b) list += word
+    return list
+}
 
 /**
  * Средняя (3 балла)
