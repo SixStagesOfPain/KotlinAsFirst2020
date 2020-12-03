@@ -149,9 +149,9 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки, а также в случае отсутствия удачных попыток,
  * вернуть -1.
  */
-fun bestHighJump(jumps: String): Int {
+fun bestHighJump(jumps: String): Int = TODO() /*{
     if (!jumps.matches(Regex("""(\d+ [+%-]+ )*""")))
-}
+}*/
 
 /**
  * Сложная (6 баллов)
@@ -163,7 +163,7 @@ fun bestHighJump(jumps: String): Int {
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
 fun plusMinus(expression: String): Int {
-    if (!expression.matches(Regex("""(\d+ [+-] )*(\d+$)"""))) throw IllegalArgumentException()
+    if (!expression.matches(Regex("""(\d* [+-] )*(\d*$)"""))) throw IllegalArgumentException()
     var res = 0
     var sign = "+"
     val parts = expression.split(" ")
