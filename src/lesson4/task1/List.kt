@@ -6,6 +6,7 @@ import lesson1.task1.discriminant
 import lesson1.task1.sqr
 import lesson3.task1.digitNumber
 import lesson3.task1.minDivisor
+import org.junit.Test
 import kotlin.math.pow
 import kotlin.math.sqrt
 

@@ -74,7 +74,29 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String = TODO() /*{
+    val parts = str.split(" ")
+    val month = toNum(parts[1])
+    return String.format("%s.%s.%s", parts[0], month, parts[2])
+}
+
+fun toNum(n: String): String {
+    return when (n) {
+        "декабря" -> "12"
+        "января" -> "01"
+        "февраля" -> "02"
+        "марта" -> "03"
+        "апреля" -> "04"
+        "мая" -> "05"
+        "июня" -> "06"
+        "июля" -> "07"
+        "августа" -> "08"
+        "сентября" -> "09"
+        "октября" -> "10"
+        else -> "11"
+    }
+}
+*/
 
 /**
  * Средняя (4 балла)
@@ -127,7 +149,9 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки, а также в случае отсутствия удачных попыток,
  * вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
+fun bestHighJump(jumps: String): Int {
+    if (!jumps.matches(Regex("""(\d+ [+%-]+ )*""")))
+}
 
 /**
  * Сложная (6 баллов)
@@ -138,7 +162,16 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int = TODO()
+fun plusMinus(expression: String): Int {
+    if (!expression.matches(Regex("""(\d+ [+-] )*(\d+$)"""))) throw IllegalArgumentException()
+    var res = 0
+    var sign = "+"
+    val parts = expression.split(" ")
+    for ((index, part) in parts.withIndex()) {
+        if (index % 2 == 0) res += if (sign == "-") -part.toInt() else part.toInt() else sign = part
+    }
+    return res
+}
 
 /**
  * Сложная (6 баллов)
