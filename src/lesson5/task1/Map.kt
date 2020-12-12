@@ -225,9 +225,12 @@ fun extractRepeats(list: List<String>): Map<String, Int> {
  *   hasAnagrams(listOf("тор", "свет", "рот")) -> true
  */
 fun hasAnagrams(words: List<String>): Boolean {
-    val word = mutableSetOf<Set<Char>>()
-    words.toMutableSet().forEach { word += it.toSet() }
-    return word.size != words.size
+    val listSorted = mutableSetOf<List<Char>>()
+    words.forEach {
+        val word = it.toList().sorted()
+        if (word in listSorted) return true else listSorted.add(word)
+    }
+    return false
 }
 
 /**
@@ -284,13 +287,13 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
-    val nums = mutableMapOf<Int, Int>()
+    val subtractedIndices = mutableMapOf<Int, Int>()
     for ((index, value) in list.withIndex()) {
-        if (nums.containsKey(number-value)) {
-            return if (index > nums[number - value]!!)
-                Pair(nums[number - value]!!, index)
-            else Pair(index, nums[number - value]!!)
-        } else nums[value] = index
+        if (subtractedIndices.containsKey(number - value)) {
+            return if (index > subtractedIndices[number - value]!!)
+                Pair(subtractedIndices[number - value]!!, index)
+            else Pair(index, subtractedIndices[number - value]!!)
+        } else subtractedIndices[value] = index
     }
     return Pair(-1, -1)
 }
