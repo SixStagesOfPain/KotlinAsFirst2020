@@ -152,13 +152,7 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b
  *     mapOf("Emergency" to "911", "Police" to "02")
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
-fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
-    val map = (mapA + mapB).toMutableMap()
-    for ((key, value) in mapA)
-        for ((key1, value1) in mapB)
-            if ((key == key1) && (value != value1)) map[key] = "$value, $value1"
-    return map
-}
+fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> = TODO()
 
 /**
  * Средняя (4 балла)
@@ -292,8 +286,11 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
     val nums = mutableMapOf<Int, Int>()
     for ((index, value) in list.withIndex()) {
-        if (value in nums) return Pair(nums.getOrDefault(value, -1), index)
-        nums[number - value] = index
+        if (nums.containsKey(number-value)) {
+            return if (index > nums[number - value]!!)
+                Pair(nums[number - value]!!, index)
+            else Pair(index, nums[number - value]!!)
+        } else nums[value] = index
     }
     return Pair(-1, -1)
 }
