@@ -2,6 +2,7 @@
 
 package lesson7.task1
 
+import lesson3.task1.digitNumber
 import java.io.File
 
 // Урок 7: работа с файлами
@@ -247,7 +248,7 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
         reader.forEachLine { line ->
             if (line.length == longest && line.length == line.toLowerCase().toSet().size)
                 longestWords.add(line)
-            else if (line.length > longest && line.length == line.toLowerCase().toSet().size){
+            else if (line.length > longest && line.length == line.toLowerCase().toSet().size) {
                 longest = line.length
                 longestWords.clear()
                 longestWords.add(line)
@@ -471,6 +472,20 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
  *
  */
 fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
-    TODO()
+    File(outputName).bufferedWriter().use {
+        var llhv = lhv
+        var remainder = 0
+        var subtrahend = 0
+        var ans = 0
+        var lineLength = digitNumber(lhv) + 1
+        var strBefore = ""
+        it.write("$lhv | $rhv")
+        while (llhv > rhv * 10) llhv /= 10
+        subtrahend = llhv / rhv * rhv
+        it.write("-$subtrahend")
+        while (remainder > rhv) {
+            subtrahend =
+        }
+    }
 }
 
