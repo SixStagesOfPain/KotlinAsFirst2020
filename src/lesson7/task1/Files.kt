@@ -2,7 +2,6 @@
 
 package lesson7.task1
 
-import lesson3.task1.digitNumber
 import java.io.File
 
 // Урок 7: работа с файлами
@@ -471,21 +470,6 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
  * Используемые пробелы, отступы и дефисы должны в точности соответствовать примеру.
  *
  */
-fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) { TODO() /*
-    File(outputName).bufferedWriter().use {
-        var llhv = lhv
-        var remainder = 0
-        var subtrahend = 0
-        var ans = 0
-        var lineLength = digitNumber(lhv) + 1
-        var strBefore = ""
-        it.write("$lhv | $rhv")
-        while (llhv > rhv * 10) llhv /= 10
-        subtrahend = llhv / rhv * rhv
-        it.write("-$subtrahend")
-        while (remainder > rhv) {
-            subtrahend =
-        }
-    }*/
+fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
+    TODO()
 }
-
