@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import java.io.File
+
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
 // Рекомендуемое количество баллов = 11
@@ -155,7 +157,8 @@ fun bestHighJump(jumps: String): Int {
     var max = 0
     var count = 0
     for ((index, jump) in attempts.withIndex()) {
-        if (index % 2 == 0) count = jump.toInt() else if (jump.matches(Regex("""[+]""")) && (count > max)) max = count else count = 0
+        if (index % 2 == 0) count = jump.toInt() else if (jump.matches(Regex("""[+]""")) && (count > max)) max =
+            count else count = 0
     }
     return if (max > 0) max else -1
 }
@@ -254,3 +257,13 @@ fun fromRoman(roman: String): Int = TODO()
  *
  */
 fun computeDeviceCells(cells: Int, commands: String, limit: Int): List<Int> = TODO()
+
+fun cameraVision(inputName: String): Map<Int, List<Char>> {
+    var count = -1
+    var maze = mutableMapOf<Int, List<Char>>()
+    File(inputName).forEachLine {
+        count++
+        maze[count] = it.toList()
+    }
+    return maze
+}
