@@ -258,12 +258,70 @@ fun fromRoman(roman: String): Int = TODO()
  */
 fun computeDeviceCells(cells: Int, commands: String, limit: Int): List<Int> = TODO()
 
-fun cameraVision(inputName: String): Map<Int, List<Char>> {
+/**
+ * Individual task
+ *
+ * Дан текстовый файл, в котором схематично изображена схема прямоугольного мини-лабиринта:
+ * - во всех строках одинаковое количество символов
+ * - символ # обозначает препятствие, символ . свободное место, символ C местоположение камеры в лабиринте (камера одна)
+ *
+ * Функция, которую нужно написать, принимает как параметр имя этого файла. Она должна выбрать и вернуть как результат количество свободных точек лабиринта, попадающих в зону обозрения камеры, причём:
+ * - зона обозрения камеры — это прямые линии от точки её расположения, идущие в 8 направлениях по горизонтали, вертикали и диагонали. Сквозь препятствия камера видеть не может (похоже на ход шахматного ферзя).
+ *
+ * Банальный пример
+ * xxx..
+ * xC#..
+ * xxx..
+ * .#.x.
+ *
+ * здесь зона обозрения камеры показана символами x, в неё входит всего 8 точек.
+ *
+ * Необходимо написать функцию и тесты к ней.
+ **/
+
+fun cameraVision(inputName: String): Int {
     var count = -1
-    var maze = mutableMapOf<Int, List<Char>>()
+    var cameraX = 0
+    var cameraY = 0
+    var res = 0
+    val maze = mutableMapOf<Int, List<Char>>()
     File(inputName).forEachLine {
         count++
+        if (it.contains(Regex("""C""")))
+            for ((index, value) in it.withIndex()) {
+                if (value == 'C') {
+                    cameraX = index
+                    cameraY = count
+                }
+            }
         maze[count] = it.toList()
     }
-    return maze
+    val minX = 0  // координаты, которые потом понадобятся для ограничения "карты"
+    val minY = 0
+    val maxX = maze[0]!!.size - 1
+    val maxY = count
+    val vecs = mutableListOf(
+        -1 to 0,
+        -1 to 1,
+        0 to 1,
+        1 to 1,
+        1 to 0,
+        1 to -1,
+        0 to -1,
+        -1 to -1
+    )
+    val coords = mutableListOf<Pair<Int, Int>>()
+    for (i in 0..7)
+        coords.add(cameraY + vecs[i].second to cameraX + vecs[i].first) // лист точека вокруг камеры, с которых мы
+    for (i in 0..7) {                                                   // начнем движение
+        var coorY = coords[i].first
+        var coorX = coords[i].second
+        var stop = 0
+        while ((coorX >= minX) && (coorX <= maxX) && (coorY >= minY) && (coorY <= maxY) && stop == 0) { //проверка
+            if (maze[coorY]!![coorX] == '.') res++ else stop++
+            coorX += vecs[i].first       //смещаем нашу точку "на один координатный вектор"
+            coorY += vecs[i].second
+        }
+    }
+    return res
 }

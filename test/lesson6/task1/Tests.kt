@@ -151,8 +151,14 @@ class Tests {
         assertThrows(IllegalStateException::class.java) { computeDeviceCells(20, ">>>>>>>>>>>>>", 12) }
     }
 
+    //Individual task
     @Test
     fun cameraVision() {
-        assertEquals(8, cameraVision("input/maze.txt"))
+        assertEquals(6, cameraVision("input/maze.txt"))
+        assertEquals(5, cameraVision("input/maze1.txt"))
+        assertEquals(9, cameraVision("input/maze2.txt"))
+        assertEquals(7, cameraVision("input/maze3.txt"))
+        assertEquals(21, cameraVision("input/maze4.txt"))
+        assertEquals(0, cameraVision("input/maze5.txt"))
     }
 }
